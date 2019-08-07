@@ -1680,14 +1680,10 @@ pre .javascript .function {
   margin: 0.8em 2em 0 2em;
 }
 #wechat:hover p {
-  animation: roll 0.1s infinite linear;
-  -webkit-animation: roll 0.1s infinite linear;
-  -moz-animation: roll 0.1s infinite linear;
+  color: #97c738;
 }
 #alipay:hover p {
-  animation: roll 0.1s infinite linear;
-  -webkit-animation: roll 0.1s infinite linear;
-  -moz-animation: roll 0.1s infinite linear;
+  color: #28a0e8;
 }
 #bitcoin:hover p {
   animation: roll 0.1s infinite linear;
@@ -1962,7 +1958,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #cbd2eb;
+  background: #fff0ff;
 }
 .links-of-blogroll {
   font-size: 13px;
