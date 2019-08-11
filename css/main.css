@@ -1132,7 +1132,7 @@ pre .javascript .function {
 .site-subtitle {
   margin-top: 10px;
   font-size: 13px;
-  color: #e9ebf6;
+  color: #51a8b1;
 }
 .use-motion .brand {
   opacity: 0;
@@ -1958,7 +1958,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #082524;
+  background: #2f4761;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -2878,7 +2878,7 @@ pre .javascript .function {
 .site-meta {
   padding: 20px 0;
   color: #fff;
-  background: #4d4d4d;
+  background: #f1f3f4;
 }
 @media (min-width: 768px) and (max-width: 991px) {
   .site-meta {
