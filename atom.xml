@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2019-08-07T09:19:27.254Z</updated>
+  <updated>2019-08-12T15:36:49.968Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,52 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>JSON随笔</title>
+    <link href="http://yoursite.com/2019/08/12/JSON%E9%9A%8F%E7%AC%94/"/>
+    <id>http://yoursite.com/2019/08/12/JSON随笔/</id>
+    <published>2019-08-12T15:11:06.000Z</published>
+    <updated>2019-08-12T15:36:49.968Z</updated>
+    
+    <content type="html"><![CDATA[<p>json现在多用于存储和交换文本信息的语法<br>进行数据的传输<br>JSON 比 XML 更小、更快，更易解析</p><a id="more"></a><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p><strong>JavaScript Object Notation,        JavaScript对象表示法</strong></p><ul><li><p>java 写法</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Person p = <span class="keyword">new</span> Person();</span><br><span class="line">p.setName(<span class="string">"张三"</span>);</span><br><span class="line">p.setAge(<span class="number">23</span>);</span><br><span class="line">p.setGender(<span class="string">"男"</span>);</span><br></pre></td></tr></table></figure></li><li><p>json写法</p><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var p = &#123;"name":"张三","age":23,"gender":"男"&#125;;</span><br></pre></td></tr></table></figure></li></ul><h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><h3 id="基本规则"><a href="#基本规则" class="headerlink" title="基本规则"></a>基本规则</h3><ul><li><p>数据在名称/值对中：json数据是由键值对构成的</p><ul><li>键用引号(单双都行)引起来，也可以不使用引号</li><li>值的取值类型：<ol><li>数字（整数或浮点数）</li><li>字符串（在双引号中）</li><li>逻辑值（true 或 false）</li><li>数组（在方括号中）    {“persons”:[{},{}]}</li><li>对象（在花括号中） {“address”:{“province”：”陕西”….}}</li></ol></li></ul></li><li><p>数据由逗号分隔：多个键值对由逗号分隔</p></li><li><p>花括号保存对象：使用{}定义json 格式</p></li><li><p>方括号保存数组：[]</p></li></ul><h3 id="获取数据"><a href="#获取数据" class="headerlink" title="获取数据"></a>获取数据</h3><ol><li>json对象.键名</li><li>json对象[“键名”]</li><li>数组对象[索引]</li><li>遍历<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//获取p对象中所有的键和值</span><br><span class="line">for(var key in p)&#123;</span><br><span class="line">alert(key+":"+p[key]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li></ol><h2 id="JSON数据和Java对象的相互转换"><a href="#JSON数据和Java对象的相互转换" class="headerlink" title="JSON数据和Java对象的相互转换"></a>JSON数据和Java对象的相互转换</h2><p><strong>导入jackson的相关jar包</strong></p><blockquote><p>jackson-annotations-2.2.3.jar<br>jackson-core-2.2.3.jar<br>jackson-databind-2.2.3.jar</p></blockquote><h3 id="Java对象转换JSON"><a href="#Java对象转换JSON" class="headerlink" title="Java对象转换JSON"></a>Java对象转换JSON</h3><ol><li><p>创建Jackson核心对象 <code>ObjectMapper</code></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ObjectMapper mapper = <span class="keyword">new</span> ObjectMapper();</span><br></pre></td></tr></table></figure></li><li><p>调用ObjectMapper的相关方法进行转换</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mapper.writeValueAsString(obj); <span class="comment">//将对象转为json字符串</span></span><br></pre></td></tr></table></figure></li></ol><h3 id="JSON转为Java对象"><a href="#JSON转为Java对象" class="headerlink" title="JSON转为Java对象"></a>JSON转为Java对象</h3><ol><li><p>创建Jackson核心对象 ObjectMapper</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ObjectMapper mapper = <span class="keyword">new</span> ObjectMapper();</span><br></pre></td></tr></table></figure></li><li><p>调用ObjectMapper的相关方法进行转换</p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1.初始化JSON字符串</span></span><br><span class="line">String json = <span class="string">"&#123;\"gender\":\"男\",\"name\":\"张三\",\"age\":23&#125;"</span>;</span><br><span class="line"><span class="comment">//2.转换</span></span><br><span class="line">mapper.readValue(json字符串数据,类名.Class)</span><br></pre></td></tr></table></figure></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;json现在多用于存储和交换文本信息的语法&lt;br&gt;进行数据的传输&lt;br&gt;JSON 比 XML 更小、更快，更易解析&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="web" scheme="http://yoursite.com/tags/web/"/>
+    
+      <category term="随笔" scheme="http://yoursite.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+      <category term="json" scheme="http://yoursite.com/tags/json/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>AJAX快速入门</title>
+    <link href="http://yoursite.com/2019/08/12/AJAX%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8/"/>
+    <id>http://yoursite.com/2019/08/12/AJAX快速入门/</id>
+    <published>2019-08-12T14:41:02.000Z</published>
+    <updated>2019-08-12T15:07:37.052Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p>Ajax 是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。<br>通过在后台与服务器进行少量数据交换，Ajax 可以使网页实现异步更新。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。<br>传统的网页（不使用 Ajax）如果需要更新内容，必须重载整个网页页面。</p><a id="more"></a><ol><li>异步和同步：客户端和服务器端相互通信的基础上<ul><li>客户端不需要等待服务器端的响应。在服务器处理请求的过程中，客户端可以进行其他的操作。</li><li>客户端必须等待服务器端的响应。在等待的期间客户端不能做其他操作。</li></ul></li></ol><h2 id="实现方式："><a href="#实现方式：" class="headerlink" title="实现方式："></a>实现方式：</h2><h3 id="JQeury实现方式"><a href="#JQeury实现方式" class="headerlink" title="JQeury实现方式"></a>JQeury实现方式</h3><p>$.post()：发送post请求<br>    * 语法：$.get(url, [data], [callback], [type])<br>        * 参数：<br>            * url：请求路径<br>            * data：请求参数<br>            * callback：回调函数<br>            * type：响应结果的类型</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h2&gt;&lt;p&gt;Ajax 是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。&lt;br&gt;通过在后台与服务器进行少量数据交换，Ajax 可以使网页实现异步更新。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。&lt;br&gt;传统的网页（不使用 Ajax）如果需要更新内容，必须重载整个网页页面。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="web" scheme="http://yoursite.com/tags/web/"/>
+    
+      <category term="随笔" scheme="http://yoursite.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+  </entry>
   
   <entry>
     <title>JAVA代码书写规范</title>
@@ -34,9 +80,9 @@
       <category term="java" scheme="http://yoursite.com/categories/java/"/>
     
     
-      <category term="java" scheme="http://yoursite.com/tags/java/"/>
-    
       <category term="随笔" scheme="http://yoursite.com/tags/%E9%9A%8F%E7%AC%94/"/>
+    
+      <category term="java" scheme="http://yoursite.com/tags/java/"/>
     
   </entry>
   
