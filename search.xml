@@ -16,27 +16,19 @@
     <content type="text"><![CDATA[json现在多用于存储和交换文本信息的语法进行数据的传输JSON 比 XML 更小、更快，更易解析 概念JavaScript Object Notation, JavaScript对象表示法 java 写法 1234Person p = new Person();p.setName("张三");p.setAge(23);p.setGender("男"); json写法 1var p = &#123;"name":"张三","age":23,"gender":"男"&#125;; 语法基本规则 数据在名称/值对中：json数据是由键值对构成的 键用引号(单双都行)引起来，也可以不使用引号 值的取值类型： 数字（整数或浮点数） 字符串（在双引号中） 逻辑值（true 或 false） 数组（在方括号中） {“persons”:[{},{}]} 对象（在花括号中） {“address”:{“province”：”陕西”….}} 数据由逗号分隔：多个键值对由逗号分隔 花括号保存对象：使用{}定义json 格式 方括号保存数组：[] 获取数据 json对象.键名 json对象[“键名”] 数组对象[索引] 遍历1234//获取p对象中所有的键和值for(var key in p)&#123; alert(key+":"+p[key]);&#125; JSON数据和Java对象的相互转换导入jackson的相关jar包 jackson-annotations-2.2.3.jarjackson-core-2.2.3.jarjackson-databind-2.2.3.jar Java对象转换JSON 创建Jackson核心对象 ObjectMapper 1ObjectMapper mapper = new ObjectMapper(); 调用ObjectMapper的相关方法进行转换 1mapper.writeValueAsString(obj); //将对象转为json字符串 JSON转为Java对象 创建Jackson核心对象 ObjectMapper 1ObjectMapper mapper = new ObjectMapper(); 调用ObjectMapper的相关方法进行转换 1234//1.初始化JSON字符串String json = "&#123;\"gender\":\"男\",\"name\":\"张三\",\"age\":23&#125;";//2.转换mapper.readValue(json字符串数据,类名.Class)]]></content>
       <tags>
         <tag>web</tag>
-        <tag>随笔</tag>
         <tag>json</tag>
+        <tag>随笔</tag>
       </tags>
   </entry>
   <entry>
     <title><![CDATA[AJAX快速入门]]></title>
     <url>%2F2019%2F08%2F12%2FAJAX%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8%2F</url>
     <content type="text"><![CDATA[概念Ajax 是一种在无需重新加载整个网页的情况下，能够更新部分网页的技术。通过在后台与服务器进行少量数据交换，Ajax 可以使网页实现异步更新。这意味着可以在不重新加载整个网页的情况下，对网页的某部分进行更新。传统的网页（不使用 Ajax）如果需要更新内容，必须重载整个网页页面。 异步和同步：客户端和服务器端相互通信的基础上 客户端不需要等待服务器端的响应。在服务器处理请求的过程中，客户端可以进行其他的操作。 客户端必须等待服务器端的响应。在等待的期间客户端不能做其他操作。 实现方式：JQeury实现方式$.post()：发送post请求 * 语法：$.get(url, [data], [callback], [type]) * 参数： * url：请求路径 * data：请求参数 * callback：回调函数 * type：响应结果的类型]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
       <tags>
-        <tag>web</tag>
-        <tag>随笔</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[AJAX快速入门]]></title>
-    <url>%2F2019%2F08%2F12%2FSpring1_AOP%2F</url>
-    <content type="text"><![CDATA[AOP是Spring框架面向切面的编程思想，AOP采用一种称为“横切”的技术，将涉及多业务流程的通用功能抽取并单独封装，形成独立的切面，在合适的时机将这些切面横向切入到业务流程指定的位置中。 AOP 相关术语Joinpoint(连接点): 所谓连接点是指那些被拦截到的点。在 spring 中,这些点指的是方法,因为 spring 只支持方法类型的连接点。 Pointcut(切入点): 所谓切入点是指我们要对哪些 Joinpoint 进行拦截的定义。 指的是那些被增强的方法 所有的切入点都是连接点,但并不是所有的连接点都是切入点,简单来说就是被增强的方法是切入点,没有被增强的方法则是连接点 Advice(通知/增强): 所谓通知是指拦截到 Joinpoint 之后所要做的事情就是通知。 通知的类型：前置通知,后置通知,异常通知,最终通知,环绕通知。 Introduction(引介): 引介是一种特殊的通知在不修改类代码的前提下, Introduction 可以在运行期为类动态地添加一些方法或 Field。 Target(目标对象): 代理的目标对象。 Weaving(织入): 是指把增强应用到目标对象来创建新的代理对象的过程。 spring 采用动态代理织入，而 AspectJ 采用编译期织入和类装载期织入。 Proxy（代理）: 一个类被 AOP 织入增强后，就产生一个结果代理类。 Aspect(切面): 是切入点和通知（引介）的结合。 基于XML的AOP配置引入下面的Jar包： spring-context aspectjweaver *** 1. 编写模拟Service层的接口及实现类 ** 12345public interface IAcoount &#123; void saveAccount(); // 模拟保存账户 void updateAcount(int i); // 模拟更新账户 void deleteAccount(int i); // 模拟删除账户&#125; *** 1.2 实现Service层的接口的类 ** 123456public class AccountImpl implements IAcoount&#123; @Override public void saveAccount() &#123; System.out.println("执行了保存方法..."); &#125; ... 实现所有未实现的方法 *** 2. 编写通知类 ** 1234567891011121314151617181920212223242526272829303132333435363738394041public class Logger &#123; public void berorePrintLog()&#123; System.out.println("执行了前置通知方法..."); &#125; public void afterRetueningPrintLog()&#123; System.out.println("执行了后置通知方法..."); &#125; public void afterThrowingPrintLog()&#123; System.out.println("执行了异常通知方法..."); &#125; public void afterPrintLog()&#123; System.out.println("执行了最终通知方法..."); &#125; /** 这个是演示环绕通知的方法。 Spring框架为我们提供了一个接口：ProceedingJoinPoint。该接口有一个方法proceed()，此方法 就相当于明确调用切入点方法。 该接口可以作为环绕通知的方法参数，在程序执行时，spring框架会为我们提供该接口的实现类供我们使用。 spring中的环绕通知： 它是spring框架为我们提供的一种可以在代码中手动控制增强方法何时执行的方式。 */ public Object aroundPrintLog(ProceedingJoinPoint pjp)&#123; Object rtValue = null; try &#123; Object[] args = pjp.getArgs(); // 得到方法执行所需的参数 System.out.println("执行了前置通知方法..."); rtValue = pjp.proceed(args);// 明确调用业务层方法(切入点方法) System.out.println("执行了后置通知方法..."); return rtValue; &#125; catch (Throwable t) &#123; System.out.println("执行了异常通知方法..."); throw new RuntimeException(t); &#125;finally &#123; System.out.println("执行了最终通知方法..."); &#125; &#125;&#125; *** 3. XML的配置编写 ** 123456789101112131415161718192021222324&lt;!-- 配置spring的Ioc,把需要增强的类的对象配置进来 --&gt;&lt;bean id="accountImpl" class="com.itspring.service.impl.AccountImpl"&gt;&lt;/bean&gt;&lt;!-- 配置Logger类(通知类) --&gt;&lt;bean id="logger" class="com.itspring.utilts.Logger"&gt;&lt;/bean&gt;&lt;!-- 配置Aop --&gt;&lt;aop:config&gt; &lt;!-- 配置切入点表达式 --&gt; &lt;aop:pointcut id="pt1" expression="execution(* com.itspring.service.impl.*.*(..))" /&gt; &lt;!-- 配置切面 --&gt; &lt;aop:aspect id="logAdvice" ref="logger"&gt; &lt;!-- 配置前置通知 --&gt; &lt;aop:before method="berorePrintLog" pointcut-ref="pt1" /&gt; &lt;!-- 配置后置通知 --&gt; &lt;aop:after-returning method="afterRetueningPrintLog" pointcut-ref="pt1" /&gt; &lt;!-- 配置异常通知 --&gt; &lt;aop:after-throwing method="afterThrowingPrintLog" pointcut-ref="pt1" /&gt; &lt;!-- 配置最终通知 --&gt; &lt;aop:after method="afterPrintLog" pointcut-ref="pt1" /&gt; &lt;!-- 配置坏绕通知, 配置了环绕通知就可以不用配置上面的四个通知了 --&gt; &lt;aop:around method="aroundPrintLog" pointcut-ref="pt1" /&gt; &lt;/aop:aspect&gt;&lt;/aop:config&gt; *** 4. 编写测试代码 ** 1234567891011public class AccountTest &#123; @Test public void test()&#123; //1.获取容器 ApplicationContext ac = new ClassPathXmlApplicationContext("bean.xml"); //2.获取对象 IAcoount accountImpl = ac.getBean("accountImpl",IAcoount.class); //3.执行方法 accountImpl.saveAccount(); &#125;&#125; 基于注解的AOP配置因Spring的注解的异常通知和最终通知存在执行顺序的问题,就直接使用环绕通知的注解 *** 1.编写一个配置类 ** 12345@Configuration // 指定当前类是一个配置类@ComponentScan(basePackages = &#123;"com.itspring"&#125;) //指定创建容器时要扫描的包。@EnableAspectJAutoProxy //表示开启AOP代理自动配置public class BeanConfig &#123;&#125; *** 2. 注解Service层的接口的实现类 ** 12345678@Service("accountService")public class AccountImpl implements IAcoount&#123; @Override public void saveAccount() &#123; System.out.println("执行了保存方法..."); &#125; ....... *** 3. 注解通知类 ** 123456789101112131415161718192021222324252627282930313233@Component("logger")@Aspect // 表示当前类是一个切面类public class Logger &#123; // 指定切入点表达式 @Pointcut("execution(* com.itspring.service.impl.*.*(..))") public void pt1()&#123; &#125; public void berorePrintLog()&#123; System.out.println("执行了前置通知方法..."); &#125; ...... // 环绕通知 @Around("pt1()") public Object aroundPrintLog(ProceedingJoinPoint pjp)&#123; Object rtValue = null; try &#123; Object[] args = pjp.getArgs(); // 得到方法执行所需的参数 System.out.println("执行了前置通知方法..."); rtValue = pjp.proceed(args);// 明确调用业务层方法(切入点方法) System.out.println("执行了后置通知方法..."); return rtValue; &#125; catch (Throwable t) &#123; System.out.println("执行了异常通知方法..."); throw new RuntimeException(t); &#125;finally &#123; System.out.println("执行了最终通知方法..."); &#125; &#125; *** 4. 编写测试类 ** 123456@Testpublic void test02()&#123; ApplicationContext ac = new AnnotationConfigApplicationContext(BeanConfig.class); IAcoount accountService = ac.getBean("accountService", IAcoount.class); accountService.saveAccount();&#125;]]></content>
-      <tags>
-        <tag>随笔</tag>
-        <tag>Spring</tag>
-        <tag>aop</tag>
+        <tag>Ajax</tag>
       </tags>
   </entry>
   <entry>
@@ -47,13 +39,7 @@
         <category>java</category>
       </categories>
       <tags>
-        <tag>随笔</tag>
         <tag>java</tag>
       </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2F2019%2F07%2F20%2Fhello-world%2F</url>
-    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
   </entry>
 </search>
